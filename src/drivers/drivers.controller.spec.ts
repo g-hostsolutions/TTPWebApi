@@ -1,11 +1,11 @@
 import { BadRequestException } from '@nestjs/common'
 import { Test, TestingModule } from '@nestjs/testing'
 import { ObjectId } from 'bson'
-import { DriversController } from './drivers.controller';
-import { DriversService } from './drivers.service';
-import { CreateDriverDto } from './dto/create-driver.dto';
-import { UpdateDriverDto } from './dto/update-driver.dto';
-import { Driver } from './entities/driver.entity';
+import { DriversController } from './drivers.controller'
+import { DriversService } from './drivers.service'
+import { CreateDriverDto } from './dto/create-driver.dto'
+import { UpdateDriverDto } from './dto/update-driver.dto'
+import { Driver } from './entities/driver.entity'
 
 const driversEntityList: Driver[] = [
   new Driver({
@@ -62,7 +62,7 @@ describe('DriversController', () => {
     expect(driversService).toBeDefined()
   })
 
-  describe('index', () => {
+  describe('findAll', () => {
     it('should return a driver list entity successfully', async () => {
       // Act
       const result = await driversController.findAll()
@@ -123,7 +123,9 @@ describe('DriversController', () => {
       // Assert
       expect(result).toEqual(driversEntityList[0])
       expect(driversService.findOne).toHaveBeenCalledTimes(1)
-      expect(driversService.findOne).toHaveBeenCalledWith('61707079af0c8142e2f9b512')
+      expect(driversService.findOne).toHaveBeenCalledWith(
+        '61707079af0c8142e2f9b512',
+      )
     })
 
     it('should throw an exception', () => {
@@ -133,7 +135,9 @@ describe('DriversController', () => {
         .mockRejectedValueOnce(new BadRequestException())
 
       // Assert
-      expect(driversController.findOne('61707079af0c8142e2f9b512')).rejects.toThrowError()
+      expect(
+        driversController.findOne('61707079af0c8142e2f9b512'),
+      ).rejects.toThrowError()
     })
   })
 
@@ -145,12 +149,18 @@ describe('DriversController', () => {
       }
 
       // Act
-      const result = await driversController.update('61707079af0c8142e2f9b512', body)
+      const result = await driversController.update(
+        '61707079af0c8142e2f9b512',
+        body,
+      )
 
       // Assert
       expect(result).toEqual(updatedDriversEntity)
       expect(driversService.update).toHaveBeenCalledTimes(1)
-      expect(driversService.update).toHaveBeenCalledWith('61707079af0c8142e2f9b512', body)
+      expect(driversService.update).toHaveBeenCalledWith(
+        '61707079af0c8142e2f9b512',
+        body,
+      )
     })
 
     it('should throw an exception', () => {
@@ -164,7 +174,9 @@ describe('DriversController', () => {
         .mockRejectedValueOnce(new BadRequestException())
 
       // Assert
-      expect(driversController.update('61707079af0c8142e2f9b512', body)).rejects.toThrowError()
+      expect(
+        driversController.update('61707079af0c8142e2f9b512', body),
+      ).rejects.toThrowError()
     })
   })
 
@@ -184,8 +196,9 @@ describe('DriversController', () => {
         .mockRejectedValueOnce(new BadRequestException())
 
       // Assert
-      expect(driversController.remove('61707079af0c8142e2f9b512')).rejects.toThrowError()
+      expect(
+        driversController.remove('61707079af0c8142e2f9b512'),
+      ).rejects.toThrowError()
     })
   })
 })
-

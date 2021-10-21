@@ -22,7 +22,7 @@ export class UtilizationController {
 
   @Get()
   findAll() {
-    return this.utilizationService.findAll().populate('')
+    return this.utilizationService.findAll()
   }
 
   @Get(':id')

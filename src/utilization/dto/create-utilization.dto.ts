@@ -7,7 +7,7 @@ export class CreateUtilizationDto {
 
   @IsOptional()
   @IsDateString()
-  readonly dataFinal: Date
+  readonly dataFinal?: Date
 
   @IsNotEmpty()
   @IsString()

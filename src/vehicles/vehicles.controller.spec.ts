@@ -72,7 +72,7 @@ describe('VehiclesController', () => {
     expect(vehicleService).toBeDefined()
   })
 
-  describe('index', () => {
+  describe('findAll', () => {
     it('should return a vehicle list entity successfully', async () => {
       // Act
       const result = await vehicleController.findAll()

@@ -7,8 +7,8 @@ import {
 } from '@typegoose/typegoose'
 import { IsDateString } from 'class-validator'
 import { Date } from 'mongoose'
-import { Driver } from 'src/drivers/entities/driver.entity'
-import { Vehicle } from 'src/vehicles/entities/vehicle.entity'
+import { Driver } from '../../drivers/entities/driver.entity'
+import { Vehicle } from '../../vehicles/entities/vehicle.entity'
 import { Ref } from 'typegoose'
 
 @modelOptions({
@@ -40,10 +40,10 @@ export class Utilization {
   dataFinal?: Date
 
   @prop({ nullable: false, ref: Driver, autopopulate: true })
-  motorista?: Ref<Driver>
+  motorista?: Ref<Driver> | string
 
   @prop({ nullable: false, ref: Vehicle, autopopulate: true })
-  veiculo?: Ref<Vehicle>
+  veiculo?: Ref<Vehicle> | string
 
   @prop({ nullable: false })
   motivo?: string
