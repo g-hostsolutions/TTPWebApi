@@ -9,7 +9,7 @@ import { Vehicle } from './entities/vehicle.entity'
 export class VehiclesService {
   constructor(
     @InjectModel(Vehicle)
-    private readonly vehiclesModel: ReturnModelType<typeof Vehicle>
+    private readonly vehiclesModel: ReturnModelType<typeof Vehicle>,
   ) {}
 
   create(createVehicleDto: CreateVehicleDto) {
@@ -21,9 +21,24 @@ export class VehiclesService {
     }
   }
 
-  findAll() {
+  findAll(vehicle?: UpdateVehicleDto) {
     try {
-      return this.vehiclesModel.find().exec()
+      let query: {
+        marca?: string | { $regex: string }
+        cor?: string | { $regex: string }
+      } = {}
+
+      if (vehicle.marca) {
+        const regex = { $regex: `.*${vehicle.marca}.*` }
+        query = { marca: regex }
+      }
+
+      if (vehicle.cor) {
+        const regex = { $regex: `.*${vehicle.cor}.*` }
+        query.cor = regex
+      }
+
+      return this.vehiclesModel.find(query).exec()
     } catch (e) {
       throw new BadRequestException(e.message)
     }

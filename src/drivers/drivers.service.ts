@@ -21,9 +21,14 @@ export class DriversService {
     }
   }
 
-  findAll() {
+  findAll(driver?: UpdateDriverDto) {
     try {
-      return this.driversModel.find()
+      let query = {}
+      if (driver.nome) {
+        const regex = { $regex: `.*${driver.nome}.*` }
+        query = { nome: regex }
+      }
+      return this.driversModel.find(query)
     } catch (e) {
       throw new BadRequestException(e.message)
     }
