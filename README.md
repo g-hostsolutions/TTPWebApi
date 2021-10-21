@@ -108,7 +108,8 @@ $ yarn test
     "dataFinal": "2021-07-08" <=== data nesse formato
   }
 
-# A Rota Patch da utilização é a finalização, portanto só necessita da data final, mas e preciso passar o ID da utilização em questão na rota.
+# A Rota Patch da utilização é a finalização, portanto só necessita da data final,
+# mas e preciso passar o ID da utilização em questão na rota.
   {
     "dataFinal": "2021-07-08" <=== data nesse formato
   }
