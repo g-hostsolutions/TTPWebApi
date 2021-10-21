@@ -52,12 +52,67 @@ $ yarn start:prod
 ```bash
 # unit tests
 $ yarn test
+```
 
-# e2e tests
-$ yarn test:e2e
+## Instruções de Requests
+```
+  APENAS SE UTILIZA DOS METODOS GET POST PATCH DELETE
 
-# test coverage
-$ yarn test:cov
+  EM TODOS OS POSTS E PATCH DEVERÁ SE ENVIAR UM JSON NO BODY
+
+# Rota de motoristas
+  GET http://localhost:8000/drivers
+
+  POST http://localhost:8000/drivers
+
+  PATCH http://localhost:8000/drivers/:id
+
+  DELETE http://localhost:8000/drivers/:id
+
+# Motoristas JSON
+  {
+    "nome": "Nome do Motorista"
+  }  
+
+# Rota de veiculos
+  GET http://localhost:8000/vehicles
+
+  POST http://localhost:8000/vehicles
+
+  PATCH http://localhost:8000/vehicles/:id
+
+  DELETE http://localhost:8000/vehicles/:id
+
+# Veiculos JSON
+  {
+    "placa": "HFS-8805",
+    "cor": "azul",
+    "marca": "voyagem",
+  }  
+
+# Rota de utilização
+  GET http://localhost:8000/utilization
+
+  POST http://localhost:8000/utilization
+
+  PATCH http://localhost:8000/utilization/:id
+
+  DELETE http://localhost:8000/utilization/:id
+
+# Utilização JSON
+  {
+    "dataInicio": "2021-07-04", <=== data nesse formato
+    "motorista": "ID do motorista gerado no banco",
+    "veiculo": "ID do veículo gerado no banco",
+    "motivo": "Foi comprar pão.",
+    "dataFinal": "2021-07-08" <=== data nesse formato
+  }
+
+# A Rota Patch da utilização é a finalização, portanto só necessita da data final, mas e preciso passar o ID da utilização em questão na rota.
+  {
+    "dataFinal": "2021-07-08" <=== data nesse formato
+  }
+  
 ```
 
 ## Support
